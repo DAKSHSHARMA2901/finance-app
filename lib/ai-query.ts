@@ -138,9 +138,10 @@ IMPORTANT RULES:
 - Keep the answer to 2-3 sentences maximum
 - Do NOT make up or infer data beyond what is in the results
 - If the result contains multiple rows, summarize the key insights
-- For monetary values, use currency symbols and 2 decimal places
+- For monetary values, ALWAYS use the Indian Rupee symbol ₹ (never $ or USD). Format as ₹1,00,000 using Indian number formatting (lakhs/crores)
 - For percentages or rates, include the % symbol
 - If results are aggregated (single row with totals), present them prominently
+- This is an Indian GST finance application — all amounts are in INR (₹)
 
 User's Question: ${question}
 
@@ -200,7 +201,7 @@ export function formatFinancialResult(result: Record<string, unknown>): Record<s
         key.toLowerCase().includes('price') ||
         key.toLowerCase().includes('tax')
       ) {
-        formatted[key] = `$${value.toFixed(2)}`
+        formatted[key] = `₹${value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
       } else if (key.toLowerCase().includes('rate') || key.toLowerCase().includes('percent')) {
         formatted[key] = `${value.toFixed(2)}%`
       } else if (Number.isInteger(value)) {

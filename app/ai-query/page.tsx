@@ -211,36 +211,36 @@ export default function AIQueryPage() {
       )}
 
       {/* Messages / Main Chat Area */}
-      <div className="flex-1 overflow-y-auto px-8 py-6 space-y-6 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+      <div className="flex-1 overflow-y-auto px-3 md:px-8 py-4 md:py-6 space-y-4 md:space-y-6 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
         {messages.length === 0 && (
-          <div className="max-w-2xl mx-auto mt-12 mb-8 animate-user-msg">
-            <div className="text-center mb-10">
-              <div className="w-16 h-16 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-indigo-500/30 shadow-lg shadow-indigo-500/5 relative">
+          <div className="max-w-2xl mx-auto mt-8 md:mt-12 mb-6 md:mb-8 animate-user-msg px-2">
+            <div className="text-center mb-8 md:mb-10">
+              <div className="w-12 md:w-16 h-12 md:h-16 bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mx-auto mb-3 md:mb-4 border border-indigo-500/30 shadow-lg shadow-indigo-500/5 relative">
                 <div className="absolute inset-0 bg-indigo-500/10 rounded-2xl blur-lg animate-pulse" />
-                <Bot size={32} className="text-indigo-400 relative z-10" />
+                <Bot size={24} className="md:w-8 md:h-8 text-indigo-400 relative z-10" />
               </div>
-              <h2 className="text-xl font-bold text-slate-100">Analyze your finances in real time</h2>
-              <p className="text-xs text-slate-400 mt-1.5 max-w-sm mx-auto leading-relaxed">
+              <h2 className="text-lg md:text-xl font-bold text-slate-100">Analyze your finances in real time</h2>
+              <p className="text-xs text-slate-400 mt-1 md:mt-1.5 max-w-sm mx-auto leading-relaxed">
                 Powered by AI — natural language prompts automatically translate to secure SQL execution.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3">
               {EXAMPLE_QUESTIONS.map(q => (
                 <button
                   key={q}
                   onClick={() => sendMessage(q)}
-                  className="glass-panel glass-card-hover text-left p-4 rounded-2xl group transition-all duration-300 flex items-start gap-3 border border-slate-800/80"
+                  className="glass-panel glass-card-hover text-left p-3 md:p-4 rounded-xl md:rounded-2xl group transition-all duration-300 flex items-start gap-2 md:gap-3 border border-slate-800/80"
                 >
-                  <div className="w-8 h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0 group-hover:bg-indigo-500/20 group-hover:text-indigo-300 transition-colors">
-                    <Database size={15} />
+                  <div className="w-7 md:w-8 h-7 md:h-8 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0 group-hover:bg-indigo-500/20 group-hover:text-indigo-300 transition-colors">
+                    <Database size={14} className="md:w-4 md:h-4" />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-semibold text-slate-200 group-hover:text-indigo-300 transition-colors leading-snug truncate">
+                    <p className="text-xs md:text-sm font-semibold text-slate-200 group-hover:text-indigo-300 transition-colors leading-snug truncate">
                       {q}
                     </p>
-                    <p className="text-[11px] text-slate-400 mt-1 flex items-center gap-1 group-hover:text-slate-300 transition-colors">
-                      Query database <ArrowRight size={10} className="transform group-hover:translate-x-1 transition-transform" />
+                    <p className="text-[10px] md:text-[11px] text-slate-400 mt-0.5 md:mt-1 flex items-center gap-1 group-hover:text-slate-300 transition-colors">
+                      Query database <ArrowRight size={9} className="md:w-2.5 md:h-2.5 transform group-hover:translate-x-1 transition-transform" />
                     </p>
                   </div>
                 </button>
@@ -250,16 +250,16 @@ export default function AIQueryPage() {
         )}
 
         {messages.map((msg, i) => (
-          <div key={i} className={`flex gap-4 ${msg.role === 'user' ? 'justify-end animate-user-msg' : 'justify-start animate-assistant-msg'}`}>
+          <div key={i} className={`flex gap-2 md:gap-4 ${msg.role === 'user' ? 'justify-end animate-user-msg' : 'justify-start animate-assistant-msg'}`}>
             {msg.role === 'assistant' && (
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center shrink-0 shadow-md">
-                <Bot size={18} className="text-indigo-400" />
+              <div className="w-7 md:w-9 h-7 md:h-9 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center shrink-0 shadow-md hidden sm:flex">
+                <Bot size={16} className="md:w-5 md:h-5 text-indigo-400" />
               </div>
             )}
 
-            <div className={`max-w-2xl flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
+            <div className={`max-w-sm md:max-w-2xl flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}>
               <div
-                className={`px-5 py-3.5 rounded-2xl text-sm leading-relaxed shadow-lg ${
+                className={`px-3 md:px-5 py-2 md:py-3.5 rounded-xl md:rounded-2xl text-xs md:text-sm leading-relaxed shadow-lg ${
                   msg.role === 'user'
                     ? 'bg-gradient-to-br from-indigo-600 to-blue-700 text-white rounded-tr-sm shadow-indigo-600/10 border border-indigo-500/20'
                     : 'glass-panel text-slate-200 rounded-tl-sm border border-slate-800 shadow-black/10'
@@ -269,32 +269,32 @@ export default function AIQueryPage() {
               </div>
 
               {msg.sql && (
-                <div className="mt-2.5 w-full">
-                  <div className="flex items-center gap-3">
+                <div className="mt-2 md:mt-2.5 w-full px-2">
+                  <div className="flex items-center gap-2 md:gap-3 flex-wrap">
                     <button
                       onClick={() => setShowSQL(showSQL === msg.sql ? null : msg.sql!)}
-                      className="flex items-center gap-1.5 text-xs font-semibold text-slate-400 hover:text-indigo-400 transition-colors"
+                      className="flex items-center gap-1 text-[10px] md:text-xs font-semibold text-slate-400 hover:text-indigo-400 transition-colors"
                     >
-                      <Code size={13} />
-                      {showSQL === msg.sql ? 'Hide SQL Code' : 'Show SQL Code'}
+                      <Code size={11} className="md:w-3 md:h-3" />
+                      {showSQL === msg.sql ? 'Hide SQL' : 'Show SQL'}
                     </button>
                     {showSQL === msg.sql && (
                       <button
                         onClick={() => copyQuerySQL(msg.sql!)}
-                        className="flex items-center gap-1.5 text-xs text-slate-500 hover:text-indigo-400 transition-colors"
+                        className="flex items-center gap-1 text-[10px] md:text-xs text-slate-500 hover:text-indigo-400 transition-colors"
                       >
-                        {copiedQuery === msg.sql ? <CheckCheck size={11} className="text-green-400" /> : <Copy size={11} />}
-                        {copiedQuery === msg.sql ? 'Copied' : 'Copy Code'}
+                        {copiedQuery === msg.sql ? <CheckCheck size={10} className="md:w-3 md:h-3 text-green-400" /> : <Copy size={10} className="md:w-3 md:h-3" />}
+                        {copiedQuery === msg.sql ? 'Copied' : 'Copy'}
                       </button>
                     )}
                   </div>
                   
                   {showSQL === msg.sql && (
-                    <div className="mt-2 relative group animate-user-msg">
-                      <div className="absolute top-2 right-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded-md">
+                    <div className="mt-1.5 md:mt-2 relative group animate-user-msg">
+                      <div className="absolute top-2 right-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-[8px] md:text-[10px] font-semibold tracking-wider uppercase px-1.5 md:px-2 py-0.5 rounded-md">
                         Safe Query
                       </div>
-                      <pre className="bg-slate-950 border border-slate-800 text-indigo-300 rounded-xl px-5 py-4 text-xs font-mono overflow-x-auto leading-relaxed shadow-inner">
+                      <pre className="bg-slate-950 border border-slate-800 text-indigo-300 rounded-lg md:rounded-xl px-3 md:px-5 py-3 md:py-4 text-[10px] md:text-xs font-mono overflow-x-auto leading-relaxed shadow-inner">
                         {msg.sql}
                       </pre>
                     </div>
@@ -303,23 +303,23 @@ export default function AIQueryPage() {
               )}
 
               {msg.results && msg.results.length > 0 && (
-                <div className="mt-3.5 w-full glass-panel border border-slate-800 rounded-2xl overflow-hidden shadow-xl animate-user-msg">
-                  <div className="px-4 py-2.5 bg-slate-900/50 border-b border-slate-800 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
+                <div className="mt-2 md:mt-3.5 w-full glass-panel border border-slate-800 rounded-lg md:rounded-2xl overflow-hidden shadow-xl animate-user-msg mx-2">
+                  <div className="px-3 md:px-4 py-2 bg-slate-900/50 border-b border-slate-800 flex items-center justify-between gap-1">
+                    <span className="text-[9px] md:text-[11px] font-semibold text-slate-400 uppercase tracking-wider flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                      Live Query Results
+                      Results
                     </span>
-                    <span className="text-[10px] text-slate-500">
-                      Returned {msg.results.length} rows
+                    <span className="text-[8px] md:text-[10px] text-slate-500 whitespace-nowrap">
+                      {msg.results.length} rows
                     </span>
                   </div>
                   
-                  <div className="overflow-x-auto max-h-56 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
-                    <table className="text-[11px] w-full text-left border-collapse">
+                  <div className="overflow-x-auto max-h-40 md:max-h-56 scrollbar-thin scrollbar-thumb-slate-800 scrollbar-track-transparent">
+                    <table className="text-[9px] md:text-[11px] w-full text-left border-collapse">
                       <thead>
                         <tr className="border-b border-slate-800/80 bg-slate-950/20">
                           {Object.keys(msg.results[0] as object).map(col => (
-                            <th key={col} className="px-4 py-3 text-slate-400 font-semibold whitespace-nowrap uppercase tracking-wider text-[10px]">
+                            <th key={col} className="px-2 md:px-4 py-2 md:py-3 text-slate-400 font-semibold whitespace-nowrap uppercase tracking-wider text-[8px] md:text-[10px]">
                               {col}
                             </th>
                           ))}
@@ -329,7 +329,7 @@ export default function AIQueryPage() {
                         {msg.results.slice(0, 10).map((row, ri) => (
                           <tr key={ri} className="border-b border-slate-800/40 hover:bg-slate-800/20 transition-colors">
                             {Object.values(row as object).map((val, ci) => (
-                              <td key={ci} className="px-4 py-2.5 text-slate-300 font-medium whitespace-nowrap">
+                              <td key={ci} className="px-2 md:px-4 py-1.5 md:py-2.5 text-slate-300 font-medium whitespace-nowrap text-[8px] md:text-xs">
                                 {String(val ?? '—')}
                               </td>
                             ))}
@@ -340,7 +340,7 @@ export default function AIQueryPage() {
                   </div>
                   
                   {msg.results.length > 10 && (
-                    <div className="text-[10px] text-slate-500 px-4 py-2 border-t border-slate-850 bg-slate-900/20">
+                    <div className="text-[8px] md:text-[10px] text-slate-500 px-3 md:px-4 py-1.5 md:py-2 border-t border-slate-850 bg-slate-900/20">
                       Showing 10 of {msg.results.length} rows
                     </div>
                   )}
@@ -349,22 +349,22 @@ export default function AIQueryPage() {
             </div>
 
             {msg.role === 'user' && (
-              <div className="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
-                <User size={18} className="text-slate-300" />
+              <div className="w-7 md:w-9 h-7 md:h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 hidden sm:flex">
+                <User size={16} className="md:w-4 md:h-4 text-slate-300" />
               </div>
             )}
           </div>
         ))}
 
         {loading && (
-          <div className="flex gap-4 animate-assistant-msg">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center shrink-0 shadow-md">
-              <Bot size={18} className="text-indigo-400 animate-pulse" />
+          <div className="flex gap-2 md:gap-4 animate-assistant-msg">
+            <div className="w-7 md:w-9 h-7 md:h-9 rounded-xl bg-gradient-to-tr from-indigo-500/20 to-purple-500/20 border border-indigo-500/30 flex items-center justify-center shrink-0 shadow-md hidden sm:flex">
+              <Bot size={16} className="md:w-5 md:h-5 text-indigo-400 animate-pulse" />
             </div>
-            <div className="glass-panel text-slate-200 rounded-2xl rounded-tl-sm px-5 py-4 border border-slate-800 shadow-md flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0s' }} />
-              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0.15s' }} />
-              <span className="w-2 h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0.3s' }} />
+            <div className="glass-panel text-slate-200 rounded-lg md:rounded-2xl rounded-tl-sm px-3 md:px-5 py-3 md:py-4 border border-slate-800 shadow-md flex items-center gap-1.5">
+              <span className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0s' }} />
+              <span className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0.15s' }} />
+              <span className="w-1.5 md:w-2 h-1.5 md:h-2 rounded-full bg-indigo-400 animate-bounce" style={{ animationDelay: '0.3s' }} />
             </div>
           </div>
         )}
@@ -373,28 +373,28 @@ export default function AIQueryPage() {
       </div>
 
       {/* Input / Message Compose Panel */}
-      <div className="border-t border-slate-800/80 bg-slate-950/75 backdrop-blur-md px-8 py-5 z-10">
+      <div className="border-t border-slate-800/80 bg-slate-950/75 backdrop-blur-md px-3 md:px-8 py-3 md:py-5 z-10">
         <div className="max-w-3xl mx-auto">
-          <div className="flex gap-3 relative items-center">
+          <div className="flex gap-2 md:gap-3 relative items-end">
             <textarea
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder="Ask a financial question..."
               rows={1}
-              className="flex-1 bg-slate-900/50 border border-slate-800 focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 rounded-2xl px-5 py-3.5 text-sm resize-none focus:outline-none placeholder-slate-500 text-slate-100 transition-all duration-300 pr-14 shadow-inner"
+              className="flex-1 bg-slate-900/50 border border-slate-800 focus:border-indigo-500/80 focus:ring-2 focus:ring-indigo-500/20 rounded-lg md:rounded-2xl px-3 md:px-5 py-2 md:py-3.5 text-xs md:text-sm resize-none focus:outline-none placeholder-slate-500 text-slate-100 transition-all duration-300 pr-10 md:pr-14 shadow-inner"
             />
             <button
               onClick={() => sendMessage(input)}
               disabled={!input.trim() || loading}
-              className="absolute right-2 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 disabled:opacity-40 disabled:pointer-events-none text-white rounded-xl w-10 h-10 flex items-center justify-center transition-all duration-300 transform active:scale-95 shadow-md shadow-indigo-600/10 shrink-0"
+              className="bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 disabled:opacity-40 disabled:pointer-events-none text-white rounded-lg md:rounded-xl w-8 md:w-10 h-8 md:h-10 flex items-center justify-center transition-all duration-300 transform active:scale-95 shadow-md shadow-indigo-600/10 shrink-0"
             >
-              {loading ? <Loader2 size={16} className="animate-spin text-white" /> : <Send size={16} />}
+              {loading ? <Loader2 size={14} className="md:w-4 md:h-4 animate-spin text-white" /> : <Send size={14} className="md:w-4 md:h-4" />}
             </button>
           </div>
-          <p className="text-[10px] text-center text-slate-500 mt-2.5 tracking-wide flex items-center justify-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-indigo-500/30" />
-            AI generates secure PostgreSQL queries from your natural language requests
+          <p className="text-[9px] md:text-[10px] text-center text-slate-500 mt-2 md:mt-2.5 tracking-wide flex items-center justify-center gap-1">
+            <span className="w-1 md:w-1.5 h-1 md:h-1.5 rounded-full bg-indigo-500/30" />
+            AI generates secure PostgreSQL queries
           </p>
         </div>
       </div>
