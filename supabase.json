@@ -1,0 +1,23 @@
+{
+  "functions": {
+    "ai-query-processor": {
+      "entrypoint": "index.ts",
+      "importMapPath": "deno.json"
+    },
+    "process-invoices": {
+      "entrypoint": "index.ts",
+      "importMapPath": "deno.json"
+    }
+  },
+  "env": {
+    "GEMINI_API_KEY": {
+      "description": "Google Gemini API Key for AI query generation"
+    },
+    "SUPABASE_URL": {
+      "description": "Supabase project URL"
+    },
+    "SUPABASE_SERVICE_ROLE_KEY": {
+      "description": "Supabase service role key for privileged operations"
+    }
+  }
+}
