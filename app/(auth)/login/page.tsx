@@ -69,19 +69,6 @@ export default function LoginPage() {
           </div>
         </div>
 
-        {/* Testimonial */}
-        <div className="relative z-10 border border-blue-800/50 rounded-2xl p-5 bg-white/5 backdrop-blur-sm">
-          <p className="text-blue-100 text-sm italic mb-4 leading-relaxed">
-            &ldquo;FinanceApp saved us hours every week on invoice processing — it&apos;s a game changer.&rdquo;
-          </p>
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex-shrink-0" />
-            <div>
-              <p className="text-white text-xs font-semibold">Sarah Chen</p>
-              <p className="text-blue-400 text-xs">CFO, TechVentures Inc.</p>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* ── Right form panel ── */}
